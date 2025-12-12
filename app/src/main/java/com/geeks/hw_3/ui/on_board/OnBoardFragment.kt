@@ -11,11 +11,13 @@ import com.geeks.hw_3.R
 import com.geeks.hw_3.data.model.OnBoardModel
 import com.geeks.hw_3.databinding.FragmentOnBoardBinding
 import com.geeks.hw_3.ui.on_board.adapter.OnBoardAdapter
+import me.relex.circleindicator.CircleIndicator3
 
 class OnBoardFragment : Fragment() {
 
     private lateinit var binding: FragmentOnBoardBinding
     private lateinit var adapter: OnBoardAdapter
+    private lateinit var indicator: CircleIndicator3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,27 +31,24 @@ class OnBoardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         adapter = OnBoardAdapter(getOnBordList(), ::navigateToMain, ::onSkip)
         binding.vpOnBoard.adapter = adapter
-        setupIndicators()
-        setupViewPagerListener()
-    }
+        indicator = binding.indicator
+        indicator.setViewPager(binding.vpOnBoard)
 
-    private fun setupIndicators() {
-        updateIndicators(0)
-    }
-
-    private fun setupViewPagerListener() {
         binding.vpOnBoard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                updateIndicators(position)
+                val LastPage = position == adapter.itemCount - 1
+                if (LastPage) {
+                    binding.btnNext.visibility= View.VISIBLE
+                } else {
+                    binding.btnNext.visibility= View.INVISIBLE
+                }
             }
         })
-    }
+        binding.btnNext.setOnClickListener {
+            navigateToMain()
+        }
 
-    private fun updateIndicators(position: Int) {
-        binding.ivIndicator1.alpha = if (position == 0) 1.0f else 0.5f
-        binding.ivIndicator2.alpha = if (position == 1) 1.0f else 0.5f
-        binding.ivIndicator3.alpha = if (position == 2) 1.0f else 0.5f
     }
 
     fun onSkip(endPosition: Int) {
@@ -58,7 +57,7 @@ class OnBoardFragment : Fragment() {
 
     fun navigateToMain() {
         findNavController().navigate(
-            OnBoardFragmentDirections.actionOnBoardFragmentToSecondActivity()
+            OnBoardFragmentDirections.actionOnBoardFragmentToMainFragment()
         )
     }
 

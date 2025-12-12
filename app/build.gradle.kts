@@ -62,4 +62,7 @@ dependencies {
     val lottieVersion = "6.6.6"
     implementation("com.airbnb.android:lottie:$lottieVersion")
 
+    //circleIndicator
+    implementation("me.relex:circleindicator:2.1.6")
+
 }

@@ -11,12 +11,14 @@
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" >
         <action
-            android:id="@+id/action_onBoardFragment_to_secondActivity"
-            app:destination="@id/secondActivity" />
+            app:popUpTo="@id/onBoardFragment"
+            app:popUpToInclusive="true"
+            android:id="@+id/action_onBoardFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
-    <activity
-        android:id="@+id/secondActivity"
-        android:name="com.geeks.hw_3.ui.Second.SecondActivity"
-        android:label="activity_second"
-        tools:layout="@layout/activity_second" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.geeks.hw_3.ui.main.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

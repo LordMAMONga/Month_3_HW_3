@@ -43,19 +43,12 @@ class OnBoardAdapter(
                 title.text = model.title
                 detail.text = model.desc
                 lottie.setAnimation(model.animationId)
-
-                btnNext.setOnClickListener {
-                    onStart()
-                }
-
                 skip.setOnClickListener {
                     onSkip(listOnBoard.size)
                 }
 
-                if(adapterPosition==listOnBoard.size-1){
+                if (adapterPosition == listOnBoard.size - 1) {
                     skip.visibility = View.INVISIBLE
-                }else{
-                    btnNext.visibility = View.INVISIBLE
                 }
             }
         }
