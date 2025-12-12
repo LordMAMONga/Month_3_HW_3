@@ -38,6 +38,7 @@ android {
         jvmTarget = "11"
     }
 
+    //binding
     buildFeatures {
         viewBinding = true
     }
