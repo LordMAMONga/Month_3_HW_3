@@ -6,5 +6,7 @@
     <color name="orange">#D88B02</color>
     <color name="grey">#CFCFCF</color>
     <color name="btn_gray">#C4C4C4</color>
+    <color name="text_gray">#434343</color>
+    <color name="edit_text_gray">#535353</color>
 
 </resources>
