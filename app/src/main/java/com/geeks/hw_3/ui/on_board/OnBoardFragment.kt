@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.geeks.hw_3.R
+import com.geeks.hw_3.data.local.Pref
 import com.geeks.hw_3.data.model.OnBoardModel
 import com.geeks.hw_3.databinding.FragmentOnBoardBinding
 import com.geeks.hw_3.ui.on_board.adapter.OnBoardAdapter
@@ -18,6 +19,8 @@ class OnBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
     private lateinit var adapter: OnBoardAdapter
     private lateinit var indicator: CircleIndicator3
+
+    private lateinit var pref: Pref
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,12 +36,13 @@ class OnBoardFragment : Fragment() {
         binding.vpOnBoard.adapter = adapter
         indicator = binding.indicator
         indicator.setViewPager(binding.vpOnBoard)
+        pref= Pref(requireContext())
 
         binding.vpOnBoard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                val LastPage = position == adapter.itemCount - 1
-                if (LastPage) {
+                val lastPage = position == adapter.itemCount - 1
+                if (lastPage) {
                     binding.btnNext.visibility= View.VISIBLE
                 } else {
                     binding.btnNext.visibility= View.INVISIBLE
@@ -46,6 +50,7 @@ class OnBoardFragment : Fragment() {
             }
         })
         binding.btnNext.setOnClickListener {
+            pref.setOnBoardingShown()
             navigateToMain()
         }
 
