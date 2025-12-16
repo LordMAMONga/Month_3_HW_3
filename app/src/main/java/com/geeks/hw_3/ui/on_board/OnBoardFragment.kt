@@ -41,8 +41,8 @@ class OnBoardFragment : Fragment() {
         binding.vpOnBoard.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                val LastPage = position == adapter.itemCount - 1
-                if (LastPage) {
+                val lastPage = position == adapter.itemCount - 1
+                if (lastPage) {
                     binding.btnNext.visibility= View.VISIBLE
                 } else {
                     binding.btnNext.visibility= View.INVISIBLE
