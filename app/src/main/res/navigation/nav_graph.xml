@@ -21,4 +21,8 @@
         android:name="com.geeks.hw_3.ui.main.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/addNotes"
+        android:name="com.geeks.hw_3.ui.notes_add.AddNotes"
+        android:label="AddNotes" />
 </navigation>
