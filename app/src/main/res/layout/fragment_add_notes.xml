@@ -42,6 +42,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/menu" />
 
+
     <EditText
         android:id="@+id/title_detail"
         android:layout_width="match_parent"
