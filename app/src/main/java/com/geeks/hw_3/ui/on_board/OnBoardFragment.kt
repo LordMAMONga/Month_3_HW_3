@@ -32,7 +32,7 @@ class OnBoardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = OnBoardAdapter(getOnBordList(), ::navigateToMain, ::onSkip)
+        adapter = OnBoardAdapter(getOnBordList(), ::navigateToAuth, ::onSkip)
         binding.vpOnBoard.adapter = adapter
         indicator = binding.indicator
         indicator.setViewPager(binding.vpOnBoard)
@@ -51,7 +51,7 @@ class OnBoardFragment : Fragment() {
         })
         binding.btnNext.setOnClickListener {
             pref.setOnBoardingShown()
-            navigateToMain()
+            navigateToAuth()
         }
 
     }
@@ -60,9 +60,9 @@ class OnBoardFragment : Fragment() {
         binding.vpOnBoard.currentItem = endPosition
     }
 
-    fun navigateToMain() {
+    fun navigateToAuth() {
         findNavController().navigate(
-            OnBoardFragmentDirections.actionOnBoardFragmentToMainFragment()
+            OnBoardFragmentDirections.actionOnBoardFragmentToAuthFragment()
         )
     }
 

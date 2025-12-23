@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import com.geeks.hw_3.data.local.Pref
 import com.geeks.hw_3.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,12 +24,15 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val navGraph = navController.navInflater.inflate(R.navigation.nav_graph)
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
-        if (pref.isOnBoardingShown()) {
-            navGraph.setStartDestination(R.id.mainFragment)
-        } else {
-            navGraph.setStartDestination(R.id.onBoardFragment)
-        }
+      if (!pref.isOnBoardingShown()){
+          navGraph.setStartDestination(R.id.onBoardFragment)
+      }else if (currentUser == null){
+          navGraph.setStartDestination(R.id.authFragment)
+      }else{
+          navGraph.setStartDestination(R.id.mainFragment)
+      }
 
         navController.graph = navGraph
     }

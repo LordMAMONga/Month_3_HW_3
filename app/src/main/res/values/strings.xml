@@ -2,4 +2,5 @@
     <string name="app_name">HW_3</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="default_token">326339304170-rivifi69fmtp6dqp515kbs8q5o14mnep.apps.googleusercontent.com</string>
 </resources>
