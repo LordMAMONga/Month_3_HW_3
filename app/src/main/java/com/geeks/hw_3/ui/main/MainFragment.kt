@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.geeks.hw_3.R
-import com.geeks.hw_3.data.local.AppDatabase
 import com.geeks.hw_3.data.model.NotesModel
 import com.geeks.hw_3.databinding.FragmentMainBinding
 import com.geeks.hw_3.ui.App
@@ -47,8 +46,17 @@ class MainFragment : Fragment() {
     }
 
     private fun onLongClick(notesModel: NotesModel) {
-        App.database.dao().deleteNotes(notesModel)
-        adapter.addNotes(App.database.dao().getAllNotes())
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Удалить заметку?")
+        builder.setPositiveButton("Удалить") { dialog, _ ->
+            App.database.dao().deleteNotes(notesModel)
+            adapter.addNotes(App.database.dao().getAllNotes())
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("Отмена") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 
     private fun onClick(notesModel: NotesModel) {
